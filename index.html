@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PocketManga - Visual Novels</title>
+    <title>Kagami Store</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -69,16 +69,23 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
             font-family: 'Syne', sans-serif;
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -1px;
-            position: relative;
-        }
-
-        .logo span {
             color: var(--orange);
+            letter-spacing: -1px;
         }
 
         .logo::after {
@@ -135,39 +142,396 @@
 
         .header-actions {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
         }
 
-        .cart-btn, .account-btn {
-            background: none;
-            border: 2px solid var(--border);
-            padding: 0.6rem 1.2rem;
+        .header-btn {
+            position: relative;
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-surface);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .header-btn svg {
+            width: 19px;
+            height: 19px;
+            fill: var(--text-primary);
+        }
+
+        .header-btn:hover {
+            border-color: var(--text-secondary);
+            background: var(--bg-elevated);
+        }
+
+        .header-btn:hover svg {
+            fill: var(--text-primary);
+        }
+
+        .header-btn .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--orange);
+            color: var(--bg-dark);
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO SLIDER */
+        .hero-slider {
+            margin-top: 80px;
+            margin-bottom: 4rem;
+            position: relative;
+            width: 100%;
+            height: 650px;
+            overflow: visible;
+        }
+
+        .slider-container {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+        }
+
+        .slider-container:active {
+            cursor: grabbing;
+        }
+
+        .slider-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13,13,13,0.9) 0%, rgba(13,13,13,0.4) 50%, rgba(13,13,13,0.7) 100%);
+        }
+
+        .slider-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .slider-content.text-only {
+            grid-template-columns: 1fr;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .slider-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.3s;
+        }
+
+        .slider-text h1 span {
+            color: var(--cyan);
+            display: block;
+        }
+
+        .slider-text p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.5s;
+        }
+
+        .slider-buttons {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.7s;
+        }
+
+        .btn-cta {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn-cta.primary::before {
+            opacity: 1;
+        }
+
+        .btn-cta svg {
+            position: relative;
+            z-index: 10;
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: transform 0.4s ease;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: transparent;
+            box-shadow: 0 10px 30px rgba(255, 123, 59, 0.4);
+        }
+
+        .btn-cta.secondary:hover {
+            background: rgba(76, 201, 240, 0.2);
+            border-color: var(--cyan);
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+
+        .btn-cta.secondary:hover svg {
+            fill: var(--cyan);
+        }
+
+        .btn-cta:hover svg {
+            transform: scale(1.2);
+        }
+
+        .btn-cta .tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: 'Space Grotesk', sans-serif;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .btn-cta:hover .tooltip {
+            opacity: 1;
+            bottom: -50px;
+        }
+
+        .slider-content.active .slider-text h1,
+        .slider-content.active .slider-text p,
+        .slider-content.active .slider-buttons {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1rem 2rem;
             border-radius: 50px;
             font-family: 'Space Grotesk', sans-serif;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--orange-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--orange-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
             color: var(--text-primary);
+            border: 2px solid var(--border);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .cart-btn:hover, .account-btn:hover {
+        .btn-secondary:hover {
             border-color: var(--cyan);
-            background: var(--bg-elevated);
             color: var(--cyan);
-            transform: translateY(-2px);
+            box-shadow: 0 0 20px var(--cyan-glow);
         }
 
-        /* HERO SECTION */
-        .hero {
-            margin-top: 80px;
-            padding: 4rem 2rem;
-            background: radial-gradient(ellipse at top right, var(--orange-glow) 0%, transparent 50%),
-                        radial-gradient(ellipse at bottom left, var(--cyan-glow) 0%, transparent 50%),
-                        var(--bg-dark);
+        .slider-visual {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
             position: relative;
+        }
+
+        .slider-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slider-card.large {
+            grid-column: span 2;
+        }
+
+        .slider-content.active .slider-card {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slider-content.active .slider-card:nth-child(1) { transition-delay: 0.2s; }
+        .slider-content.active .slider-card:nth-child(2) { transition-delay: 0.3s; }
+        .slider-content.active .slider-card:nth-child(3) { transition-delay: 0.4s; }
+
+        .slider-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+            box-shadow: 0 0 30px var(--cyan-glow);
+        }
+
+        .slider-card-img {
+            width: 100%;
+            height: 180px;
+            background: var(--bg-elevated);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
             overflow: hidden;
+        }
+
+        .slider-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .slider-card .price {
+            font-weight: 700;
+            color: var(--cyan);
+            font-size: 1.2rem;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: -3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 100;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .slider-dot::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 100%;
+            height: 100%;
+            background: var(--cyan);
+            border-radius: 50%;
+            transition: transform 0.4s ease;
+        }
+
+        .slider-dot.active {
+            background: transparent;
+            border-color: var(--cyan);
+        }
+
+        .slider-dot.active::after {
+            transform: translate(-50%, -50%) scale(0.6);
+        }
+
+        .slider-dot:hover {
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .hero::before {
@@ -313,9 +677,10 @@
 
         /* GENRE SECTION */
         .genres {
-            padding: 4rem 2rem;
+            padding: 2rem 2rem 4rem;
             max-width: 1400px;
             margin: 0 auto;
+            padding-top: 4rem;
         }
 
         .section-header {
@@ -436,10 +801,9 @@
         }
 
         .featured-container {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
             position: relative;
-            height: 600px;
+            min-height: 700px;
         }
 
         .featured-preview {
@@ -450,6 +814,67 @@
             width: 50vw;
             height: 200%;
             z-index: 1;
+        }
+
+        .featured-header {
+            position: absolute;
+            right: 3rem;
+            top: -2rem;
+            z-index: 10;
+        }
+
+        .featured-header .section-title {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .featured-header .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--cyan);
+        }
+
+        .featured-footer {
+            position: absolute;
+            right: 3rem;
+            bottom: 2rem;
+            z-index: 10;
+        }
+
+        .featured-footer .view-all {
+            font-weight: 600;
+            color: var(--cyan);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .featured-footer .view-all::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--cyan);
+            transition: width 0.3s ease;
+        }
+
+        .featured-footer .view-all:hover {
+            gap: 0.8rem;
+            color: var(--cyan-dark);
+        }
+
+        .featured-footer .view-all:hover::after {
+            width: 100%;
         }
 
         .featured-preview-bg {
@@ -501,7 +926,7 @@
             gap: 2rem;
             align-items: center;
             position: absolute;
-            right: 2rem;
+            right: 3rem;
             top: 50%;
             transform: translateY(-50%);
             z-index: 10;
@@ -519,6 +944,9 @@
             overflow: hidden;
             transition: all 0.3s ease;
             position: relative;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -533,6 +961,7 @@
             background: var(--bg-elevated);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .product-image img {
@@ -544,6 +973,32 @@
 
         .product-card:hover .product-image img {
             transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 3rem;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1rem;
         }
 
         .badge {
@@ -924,7 +1379,10 @@
     <!-- HEADER -->
     <header class="header">
         <nav class="header-nav">
-            <a href="#" class="logo">Pocket<span>Manga</span></a>
+            <a href="#" class="logo">
+                <img src="C:\Users\Berto\Documents\pocketmanga\Klogo.png" alt="Kagami" class="logo-img">
+                <span class="logo-text">Store</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="#">Store</a></li>
                 <li><a href="#">Genres</a></li>
@@ -933,40 +1391,115 @@
                 <li><a href="#">Creators</a></li>
             </ul>
             <div class="header-actions">
-                <button class="account-btn">My Account</button>
-                <button class="cart-btn">Cart (0)</button>
+                <button class="header-btn" aria-label="My Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </button>
+                <button class="header-btn" aria-label="Cart">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="badge-count">0</span>
+                </button>
             </div>
         </nav>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Stories that <span>pull you in</span></h1>
-                <p>Discover unique visual novels crafted by independent artists. From romance to mystery, your next adventure awaits.</p>
-                <div class="hero-buttons">
-                    <button class="btn-primary">Browse Catalog</button>
-                    <button class="btn-secondary">View Deals</button>
+    <!-- HERO SLIDER -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <!-- Slide 1: Text + Cards -->
+            <div class="slider-slide">
+                <img src="C:\Users\Berto\Desktop\Luna\94256.jpg" alt="" class="slider-bg">
+                <div class="slider-overlay"></div>
+                <div class="slider-content">
+                    <div class="slider-text">
+                        <h1>Stories that <span>pull you in</span></h1>
+                        <p>Discover unique visual novels crafted by independent artists. From romance to mystery, your next adventure awaits.</p>
+                        <div class="slider-buttons">
+                            <button class="btn-cta primary" aria-label="Browse Catalog">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                                <span class="tooltip">Browse Catalog</span>
+                            </button>
+                            <button class="btn-cta secondary" aria-label="View Deals">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                                    <circle cx="7" cy="7" r="2"/>
+                                </svg>
+                                <span class="tooltip">View Deals</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="slider-visual">
+                        <div class="slider-card large">
+                            <div class="slider-card-img">
+                                <img src="C:\Users\Berto\Desktop\Luna\94256.jpg" alt="Twilight's Folclore">
+                            </div>
+                            <h3>Twilight's Folclore</h3>
+                            <p class="price">$19.99</p>
+                        </div>
+                        <div class="slider-card">
+                            <div class="slider-card-img">🌙</div>
+                            <h3>Moonlight Café</h3>
+                            <p class="price">$9.99</p>
+                        </div>
+                        <div class="slider-card">
+                            <div class="slider-card-img">⚡</div>
+                            <h3>Electric Hearts</h3>
+                            <p class="price">$12.99</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-visual">
-                <div class="hero-card large">
-                    <div class="hero-card-img">🎮</div>
-                    <h3>Cherry Blossom Dreams</h3>
-                    <p class="price">$14.99</p>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-img">🌙</div>
-                    <h3>Moonlight Café</h3>
-                    <p class="price">$9.99</p>
-                </div>
-                <div class="hero-card">
-                    <div class="hero-card-img">⚡</div>
-                    <h3>Electric Hearts</h3>
-                    <p class="price">$12.99</p>
+            <!-- Slide 2: Full width image only -->
+            <div class="slider-slide">
+                <img src="C:\Users\Berto\Desktop\Luna\1bX0Z.jpg" alt="" class="slider-bg">
+            </div>
+            <!-- Slide 3: Text only -->
+            <div class="slider-slide">
+                <img src="C:\Users\Berto\Desktop\Luna\template_cover.jpg" alt="" class="slider-bg">
+                <div class="slider-overlay"></div>
+                <div class="slider-content text-only">
+                    <div class="slider-text">
+                        <h1>New Releases <span>Every Week</span></h1>
+                        <p>Stay updated with the latest visual novels from independent creators worldwide.</p>
+                        <div class="slider-buttons">
+                            <button class="btn-cta primary" aria-label="Explore New">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                                <span class="tooltip">Explore New</span>
+                            </button>
+                            <button class="btn-cta secondary" aria-label="Coming Soon">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <span class="tooltip">Coming Soon</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <!-- Slide 4: Full width image only -->
+            <div class="slider-slide">
+                <img src="C:\Users\Berto\Desktop\Luna\1500x500.jpg" alt="" class="slider-bg">
+            </div>
+        </div>
+        <div class="slider-dots">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+            <div class="slider-dot" data-slide="3"></div>
         </div>
     </section>
 
@@ -1012,20 +1545,19 @@
 
     <!-- FEATURED -->
     <section class="featured">
-        <div class="section-header">
-            <h2 class="section-title">Featured</h2>
-            <a href="#" class="view-all">View all →</a>
-        </div>
         <div class="featured-container">
             <div class="featured-preview">
                 <div class="featured-preview-bg">
                     <img id="preview-img-1" class="featured-preview-img active" src="C:\Users\Berto\Desktop\Luna\94256.jpg" alt="Featured preview">
-                    <img id="preview-img-2" class="featured-preview-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Crect fill='%23252525' width='600' height='500'/%3E%3Ctext fill='%23FF7B3B' font-size='120' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E☕%3C/text%3E%3C/svg%3E" alt="Featured preview">
-                    <img id="preview-img-3" class="featured-preview-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Crect fill='%23252525' width='600' height='500'/%3E%3Ctext fill='%234CC9F0' font-size='120' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E🌃%3C/text%3E%3C/svg%3E" alt="Featured preview">
-                    <img id="preview-img-4" class="featured-preview-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 500'%3E%3Crect fill='%23252525' width='600' height='500'/%3E%3Ctext fill='%23FF7B3B' font-size='120' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3E💾%3C/text%3E%3C/svg%3E" alt="Featured preview">
+                    <img id="preview-img-2" class="featured-preview-img" src="C:\Users\Berto\Desktop\Luna\lpp_cover.jpg" alt="Featured preview">
+                    <img id="preview-img-3" class="featured-preview-img" src="C:\Users\Berto\Desktop\Luna\template_cover.jpg" alt="Featured preview">
+                    <img id="preview-img-4" class="featured-preview-img" src="C:\Users\Berto\Desktop\Luna\karigurashi_cover.jpg" alt="Featured preview">
                 </div>
                 <div class="featured-preview-vignette"></div>
                 <div class="featured-preview-edge"></div>
+            </div>
+            <div class="featured-header">
+                <h2 class="section-title">Featured</h2>
             </div>
             <div class="featured-grid">
                 <div class="product-card" data-preview="1">
@@ -1045,10 +1577,11 @@
                 </div>
                 <div class="product-card" data-preview="2">
                     <div class="product-image">
+                        <img src="C:\Users\Berto\Desktop\Luna\lpp_cover.jpg" alt="Lovepical Poppy!">
                         <span class="badge sale">-20%</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Café Enchantment: Love Brew</h3>
+                        <h3 class="product-title">Lovepical Poppy!</h3>
                         <div class="product-meta">
                             <div class="price-container">
                                 <span class="price-original">$14.99</span>
@@ -1060,10 +1593,11 @@
                 </div>
                 <div class="product-card" data-preview="3">
                     <div class="product-image">
+                        <img src="C:\Users\Berto\Desktop\Luna\template_cover.jpg" alt="Template! An Angel's Gift">
                         <span class="badge">Popular</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">Neon Dreams: Tokyo 2089</h3>
+                        <h3 class="product-title">Template! An Angel's Gift</h3>
                         <div class="product-meta">
                             <div class="price-container">
                                 <span class="price-current">$24.99</span>
@@ -1074,10 +1608,11 @@
                 </div>
                 <div class="product-card" data-preview="4">
                     <div class="product-image">
+                        <img src="C:\Users\Berto\Desktop\Luna\karigurashi_cover.jpg" alt="Karigurashi Ren'ai: Living on Borrowed Love">
                         <span class="badge sale">-35%</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">The Last Memory: Director's Cut</h3>
+                        <h3 class="product-title">Karigurashi Ren'ai: Living on Borrowed Love</h3>
                         <div class="product-meta">
                             <div class="price-container">
                                 <span class="price-original">$29.99</span>
@@ -1087,6 +1622,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="featured-footer">
+                <a href="#" class="view-all">View all →</a>
             </div>
         </div>
     </section>
@@ -1147,7 +1685,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <h3>Pocket<span>Manga</span></h3>
+                <h3>Kagami<span>Store</span></h3>
                 <p>Your destination for independent visual novels. Unique stories, crafted with passion.</p>
             </div>
             <div class="footer-links">
@@ -1229,6 +1767,131 @@
                     img.classList.toggle('active', index + 1 === parseInt(previewId));
                 });
             });
+        });
+
+        // Hero Slider
+        const sliderContainer = document.querySelector('.slider-container');
+        const slides = document.querySelectorAll('.slider-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        let isDragging = false;
+        let startPos = 0;
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+        let animationID;
+        let slideWidth = window.innerWidth;
+
+        function updateSlider() {
+            sliderContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+            
+            // Reset animations
+            document.querySelectorAll('.slider-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            const activeContent = slides[currentSlide].querySelector('.slider-content');
+            if (activeContent) {
+                setTimeout(() => activeContent.classList.add('active'), 300);
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                currentSlide = index;
+                updateSlider();
+            }
+        }
+
+        function getPositionX(event) {
+            return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        }
+
+        // Click on dots
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.getAttribute('data-slide')));
+            });
+        });
+
+        // Disable context menu on slider
+        sliderContainer.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+        });
+
+        // Touch/Mouse Start
+        function startDrag(event) {
+            isDragging = true;
+            startPos = getPositionX(event);
+            currentTranslate = prevTranslate;
+            sliderContainer.style.transition = 'none';
+            
+            // Cancel any auto-advance
+            if (animationID) {
+                cancelAnimationFrame(animationID);
+            }
+        }
+
+        // Touch/Mouse Move
+        function drag(event) {
+            if (!isDragging) return;
+            const currentPosition = getPositionX(event);
+            const diff = currentPosition - startPos;
+            currentTranslate = prevTranslate + diff;
+            sliderContainer.style.transform = `translateX(${currentTranslate}px)`;
+        }
+
+        // Touch/Mouse End
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const movedBy = currentTranslate - prevTranslate;
+            const threshold = slideWidth * 0.2;
+            
+            if (movedBy < -threshold && currentSlide < slides.length - 1) {
+                currentSlide++;
+            } else if (movedBy > threshold && currentSlide > 0) {
+                currentSlide--;
+            }
+            
+            prevTranslate = -currentSlide * slideWidth;
+            sliderContainer.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+            updateSlider();
+        }
+
+        // Mouse events
+        sliderContainer.addEventListener('mousedown', startDrag);
+        sliderContainer.addEventListener('mousemove', drag);
+        sliderContainer.addEventListener('mouseup', endDrag);
+        sliderContainer.addEventListener('mouseleave', () => {
+            if (isDragging) endDrag();
+        });
+
+        // Touch events
+        sliderContainer.addEventListener('touchstart', startDrag);
+        sliderContainer.addEventListener('touchmove', drag);
+        sliderContainer.addEventListener('touchend', endDrag);
+
+        // Auto-advance every 10 seconds
+        setInterval(() => {
+            if (!isDragging) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                prevTranslate = -currentSlide * slideWidth;
+                updateSlider();
+            }
+        }, 10000);
+
+        // Initialize
+        updateSlider();
+        prevTranslate = -currentSlide * slideWidth;
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            slideWidth = window.innerWidth;
+            prevTranslate = -currentSlide * slideWidth;
+            updateSlider();
         });
     </script>
 </body>

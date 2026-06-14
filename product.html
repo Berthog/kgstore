@@ -1,0 +1,2893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triple Pairing - Kagami Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #FF7B3B;
+            --bg-dark: #030305;
+            --bg-surface: #0f0f15;
+            --bg-card: #16161f;
+            --bg-elevated: #1f1f2a;
+            --text-primary: #FFFFFF;
+            --text-secondary: #9a9ab0;
+            --border: #3d3d4a;
+            --border-light: #4a4a58;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(3, 3, 5, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.7rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .header-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            background: var(--bg-elevated);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-btn svg {
+            width: 19px;
+            height: 19px;
+            fill: var(--text-primary);
+        }
+
+        .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--orange);
+            color: var(--bg-dark);
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            position: relative;
+            width: 1912px;
+            height: 480px;
+            margin: 72px auto 0;
+            overflow: hidden;
+        }
+
+        .poster {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('file:///C:/Users/Berto/Desktop/Luna/1500x500.jpg');
+        }
+
+        .poster::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(3, 3, 5, 0.7) 100%);
+        }
+
+        /* PRODUCT CONTAINER */
+        .product-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        /* MAIN CONTENT BOX */
+        .content-box {
+            display: grid;
+            grid-template-columns: 260px 1fr 320px;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 3rem;
+        }
+
+        /* LEFT - COVER */
+        .cover-section {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-left: -4rem;
+        }
+
+        .cover-wrapper {
+            position: absolute;
+            top: -100px;
+            left: 0;
+        }
+
+        .cover-image {
+            width: 230px;
+            height: 304px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CENTER - INFO */
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            margin-left: -6rem;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .description {
+            color: #888890;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .description p {
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .links-top {
+            margin-bottom: 1.5rem;
+        }
+
+        .link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.25s ease;
+        }
+
+        .link:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        .link-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .links-bottom {
+            display: flex;
+            gap: 0.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .links-bottom .link {
+            padding: 0.7rem;
+            width: 42px;
+            height: 42px;
+            justify-content: center;
+        }
+
+        .links-bottom .link-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* RIGHT - DOWNLOAD/ACTION */
+        .download-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            height: fit-content;
+            margin-top: 1rem;
+        }
+
+        .cart-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1.1rem 1.5rem;
+            background: linear-gradient(135deg, var(--orange) 0%, #ff9566 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 123, 59, 0.4);
+        }
+
+        .cart-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .also-available {
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .store-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .store-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .store-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .store-icon:hover img {
+            opacity: 0.8;
+        }
+
+        .store-icon:hover {
+            border-color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .store-icon:hover svg {
+            fill: var(--text-primary);
+        }
+
+        .store-icon.steam:hover {
+            border-color: #1b2838;
+            background: #1b2838;
+        }
+
+        .store-icon.steam:hover svg {
+            fill: #ffffff;
+        }
+
+        .store-icon.jast:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .store-icon.jast:hover svg {
+            fill: #ffffff;
+        }
+
+        .store-icon.heybox:hover {
+            border-color: #F5F5F5;
+            background: #F5F5F5;
+        }
+
+        .store-icon.heybox:hover svg {
+            fill: #ffffff;
+        }
+
+        .store-label {
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .store-icon:hover .store-label {
+            opacity: 1;
+            bottom: -32px;
+        }
+
+        /* INFO TABLE */
+        .meta-table {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            font-size: 0.85rem;
+        }
+
+        .meta-key {
+            color: var(--text-secondary);
+        }
+
+        /* CONTENT SECTIONS */
+        .content-sections {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 4rem;
+        }
+
+        /* TABS SECTION */
+        .tabs-section {
+            background: #0d0d10;
+            margin: 0 -4rem 5rem;
+        }
+
+        .info-section {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content-container {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            width: 100%;
+        }
+
+        .tab-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 2rem 3rem;
+        }
+
+        .tab-content.active {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        /* MEDIA SECTION */
+        .media-section {
+            padding: 2rem 3rem !important;
+        }
+
+        .media-section .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .media-section .nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .media-section .nav span {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .nav-dots .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dots .dot.selected {
+            background: var(--orange);
+        }
+
+        .arrow {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-right: 2px solid var(--text-primary);
+            border-top: 2px solid var(--text-primary);
+        }
+
+        .arrow.previous::before {
+            transform: rotate(-135deg) translate(-2px, 2px);
+        }
+
+        .arrow.next::before {
+            transform: rotate(45deg) translate(-2px, -2px);
+        }
+
+        .arrow:hover {
+            border-color: var(--orange);
+            background: rgba(255, 123, 59, 0.1);
+        }
+
+        .arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .media-wrapper {
+            overflow: hidden;
+        }
+
+        .pages {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .section {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 0.7rem;
+        }
+
+        .preview {
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 16/9;
+            position: relative;
+            background: var(--bg-surface);
+        }
+
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .preview:hover {
+            border-color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview:hover img {
+            transform: scale(1.03);
+        }
+
+        .preview.first {
+            grid-column: 1 / 3;
+            grid-row: 1 / 3;
+            aspect-ratio: 16/9;
+        }
+
+        .preview.video {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .preview.video::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .preview.video:hover::after {
+            background: var(--orange);
+            border-color: var(--orange);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* VIDEO MODAL */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .video-modal-close:hover {
+            color: var(--orange);
+        }
+
+        .video-modal-container {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-modal-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* IMAGE MODAL */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            z-index: 2001;
+        }
+
+        .image-modal-close:hover {
+            color: var(--orange);
+        }
+
+        .image-modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .image-modal-nav:hover {
+            background: var(--orange);
+        }
+
+        .image-modal-prev {
+            left: 30px;
+        }
+
+        .image-modal-next {
+            right: 30px;
+        }
+
+        /* REVIEWS SECTION */
+        .reviews-section {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 3rem;
+        }
+
+        .reviews-section .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .reviews-summary {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 1.5rem;
+        }
+
+        .score-circle svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .score-circle .circle-bg {
+            fill: none;
+            stroke: var(--bg-elevated);
+            stroke-width: 12;
+        }
+
+        .score-circle .circle-progress {
+            fill: none;
+            stroke: url(#scoreGradient);
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 44;
+            animation: fillCircle 1.5s ease-out;
+        }
+
+        @keyframes fillCircle {
+            from { stroke-dashoffset: 440; }
+        }
+
+        .score-circle .score-inner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .score-circle .score-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--orange);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 123, 59, 0.5);
+        }
+
+        .score-circle .score-out-of {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .score-circle .score-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 0.3rem;
+        }
+
+        .score-circle .score-total {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .reviews-bars {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .review-bar {
+            display: grid;
+            grid-template-columns: 45px 1fr 35px;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .review-bar .stars {
+            font-size: 0.8rem;
+            color: var(--orange);
+            letter-spacing: 1px;
+        }
+
+        .review-bar .bar-container {
+            height: 6px;
+            background: var(--bg-elevated);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .review-bar .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange) 0%, #ff9566 100%);
+            border-radius: 3px;
+            transition: width 0.8s ease-out;
+        }
+
+        .review-bar .count {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .review-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: var(--orange);
+            background: var(--bg-elevated);
+            transform: translateX(5px);
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .review-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange) 0%, #ff9566 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 123, 59, 0.3);
+        }
+
+        .review-author-info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .review-author-info .date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 0.15rem;
+        }
+
+        .review-rating .star {
+            width: 16px;
+            height: 16px;
+            fill: var(--orange);
+        }
+
+        .review-rating .star.empty {
+            fill: var(--border);
+        }
+
+        .review-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        .review-content strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .review-helpful {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .review-helpful button {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.35rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .review-helpful button:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(255, 123, 59, 0.1);
+        }
+
+        .review-helpful svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* SIMILAR GAMES SECTION */
+        .similar-games-section {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 3rem;
+        }
+
+        .similar-games-section .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        .similar-games-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .game-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .game-card .cover {
+            width: 100%;
+            aspect-ratio: 230/304;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-card .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card:hover .cover img {
+            transform: scale(1.08);
+        }
+
+        .game-card .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .game-card:hover .cover::after {
+            opacity: 1;
+        }
+
+        .game-card .info {
+            padding: 1.2rem;
+        }
+
+        .game-card .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .game-card .genre {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+        }
+
+        .game-card .footer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .game-card .price {
+            font-weight: 700;
+            color: var(--orange);
+            font-size: 1.1rem;
+        }
+
+        .game-card .price span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            margin-right: 0.5rem;
+            font-weight: 400;
+        }
+
+        .game-card .btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .game-card .btn:hover {
+            border-color: var(--orange);
+            background: var(--orange);
+            color: white;
+        }
+
+        /* DETAILS SECTION */
+        .details-section {
+            padding: 2rem 3rem !important;
+        }
+
+        .details-section .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .details-section .content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 700px;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-row .label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .detail-row .value {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* SUMMARY SECTION */
+        .summary-section {
+            padding: 2rem 3rem !important;
+        }
+
+        .summary-section .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .summary-section .content {
+            max-width: 900px;
+        }
+
+        .summary-section .image-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .summary-section .image-list .img-item {
+            width: 100%;
+        }
+
+        .summary-section .image-list .img-item img {
+            width: 100%;
+            display: block;
+        }
+
+        /* REQUIREMENTS SECTION */
+        .requirements-section {
+            padding: 2rem 3rem !important;
+        }
+
+        .requirements-section .title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .requirements-section .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .requirements-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .requirements-card .card-header {
+            background: linear-gradient(135deg, rgba(255, 123, 59, 0.2) 0%, rgba(255, 123, 59, 0.08) 100%);
+            border-bottom: 2px solid var(--border-light);
+            padding: 1.2rem 1.5rem;
+        }
+
+        .requirements-card .card-header span {
+            color: var(--orange);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .requirements-card .card-body {
+            padding: 1.5rem;
+            background: var(--bg-dark);
+        }
+
+        .requirements-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .requirements-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .requirements-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .requirements-table td {
+            padding: 0.8rem 0;
+        }
+
+        .requirements-table td:first-child {
+            width: 40%;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: capitalize;
+        }
+
+        .requirements-table td:last-child {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+        }
+
+        .content-container {
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .tab-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-content.active {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .media-section,
+        .details-section,
+        .summary-section,
+        .requirements-section {
+            padding: 2rem 3rem;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .tab-content.active {
+            background: var(--bg-dark);
+        }
+
+        .tab-bar {
+            background: var(--bg-elevated);
+            border-bottom: 2px solid var(--border-light);
+            padding: 0 4rem;
+        }
+
+        .tab-bar.stuck {
+            position: sticky;
+            top: 72px;
+            z-index: 100;
+        }
+
+        .tab-bar .content {
+            display: flex;
+            align-items: center;
+        }
+
+        .tab-list {
+            display: flex;
+            gap: 0;
+            width: 100%;
+        }
+
+        .tab {
+            padding: 1.5rem 2rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab.selected {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .tab .selected-border {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--orange);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 -2px 10px rgba(255, 123, 59, 0.5);
+        }
+
+        .tab.selected .selected-border {
+            opacity: 1;
+        }
+
+        .tab-bar .download {
+            padding: 1rem 0;
+        }
+
+        .tab-bar .steam-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #1b2838 0%, #2a475e 100%);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-bar .steam-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(27, 40, 56, 0.5);
+        }
+
+        .tab-bar .download-icon {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* MEDIA SECTION */
+        /* MEDIA SECTION */
+        .media-section {
+            padding: 2.5rem 3rem 3rem;
+        }
+
+        .media-section .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .media-section .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .media-section .nav span {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-dots .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dots .dot.selected {
+            background: var(--orange);
+        }
+
+        .arrow {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid var(--text-primary);
+            border-top: 2px solid var(--text-primary);
+        }
+
+        .arrow.previous::before {
+            transform: rotate(-135deg) translate(-2px, 2px);
+        }
+
+        .arrow.next::before {
+            transform: rotate(45deg) translate(-2px, -2px);
+        }
+
+        .arrow:hover {
+            border-color: var(--orange);
+            background: rgba(255, 123, 59, 0.1);
+        }
+
+        .arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .media-wrapper {
+            overflow: hidden;
+        }
+
+        .pages {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .section {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+        }
+
+        .preview {
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 16/9;
+            position: relative;
+            background: var(--bg-surface);
+        }
+
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .preview:hover {
+            border-color: var(--orange);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview:hover img {
+            transform: scale(1.05);
+        }
+
+        .preview.first {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        /* DETAILS SECTION */
+        .details-section {
+            padding: 2.5rem 3rem 3rem;
+        }
+
+        .details-section .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .details-section .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            max-width: 700px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-row:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .detail-row .label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 500;
+        }
+
+        .detail-row .value {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .detail-row .value .tag {
+            display: inline-block;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* SUMMARY SECTION */
+        .summary-section {
+            padding: 2.5rem 3rem 3rem;
+        }
+
+        .summary-section .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+        }
+
+        .summary-section .content {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            max-width: 800px;
+        }
+
+        .summary-section .content p {
+            margin-bottom: 1.2rem;
+        }
+
+        .summary-section .content strong {
+            color: var(--text-primary);
+            display: block;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* REQUIREMENTS SECTION */
+        .requirements-section {
+            padding: 2.5rem 3rem 3rem;
+        }
+
+        .requirements-section .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .requirements-section .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .requirements-section .content > div {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.8rem;
+        }
+
+        .requirements-section span:first-child {
+            display: block;
+            color: var(--orange);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.3rem;
+        }
+
+        .requirements-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .requirements-section tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .requirements-section tr:last-child {
+            border-bottom: none;
+        }
+
+        .requirements-section td {
+            padding: 0.7rem 0;
+        }
+
+        .requirements-section td:first-child {
+            width: 40%;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .requirements-section td:last-child {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+        }
+
+        .media-section .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .media-section .nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .media-section .nav span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dots .dot.selected {
+            background: var(--orange);
+        }
+
+        .arrow {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .arrow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: solid var(--text-primary);
+            border-width: 0 2px 2px 0;
+            padding: 3px;
+        }
+
+        .arrow.previous::before {
+            transform: translate(-50%, -50%) rotate(135deg);
+        }
+
+        .arrow.next::before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .arrow:hover {
+            border-color: var(--orange);
+            background: rgba(255, 123, 59, 0.1);
+        }
+
+        .arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .media-wrapper {
+            overflow: hidden;
+        }
+
+        .pages {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .section {
+            min-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-sections {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 4rem 5rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            line-height: 1.9;
+            max-width: 800px;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* SPECS */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .spec-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.3rem;
+        }
+
+        .spec-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            font-size: 0.9rem;
+        }
+
+        /* DLC */
+        .dlc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .dlc-card {
+            display: flex;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .dlc-thumb {
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .dlc-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dlc-info {
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .dlc-name {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .dlc-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .dlc-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dlc-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .btn-sm {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.8rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-sm:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-brand h3 span {
+            color: var(--orange);
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-links h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 2rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1200px) {
+            .content-box {
+                grid-template-columns: 1fr;
+                margin-top: 2rem;
+            }
+
+            .cover-section {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .cover-image {
+                width: 150px;
+                flex-shrink: 0;
+            }
+
+            .thumbnail-strip {
+                flex-direction: column;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .specs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dlc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero-banner {
+                height: 45vh;
+            }
+
+            .product-container, .content-sections {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cover-section {
+                flex-direction: column;
+            }
+
+            .cover-image {
+                width: 100%;
+            }
+
+            .thumbnail-strip {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="header-nav">
+            <a href="index.html" class="logo">
+                <img src="Klogo.png" alt="Kagami" class="logo-img">
+                <span class="logo-text">Store</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Store</a></li>
+                <li><a href="#">Genres</a></li>
+                <li><a href="#">New Releases</a></li>
+                <li><a href="#">Sale</a></li>
+                <li><a href="#">Creators</a></li>
+            </ul>
+            <div class="header-actions">
+                <button class="header-btn" aria-label="My Account">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </button>
+                <button class="header-btn" aria-label="Cart">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="badge-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+        <div class="poster" id="poster" style="background-image: url('file:///C:/Users/Berto/Desktop/Luna/1500x500.jpg');"></div>
+    </div>
+
+    <!-- PRODUCT CONTAINER -->
+    <div class="product-container">
+        <div class="content-box">
+            <!-- LEFT: COVER -->
+            <div class="cover-section">
+                <div class="cover-wrapper">
+                    <div class="cover-image">
+                        <img src="file:///C:/Users/Berto/Desktop/Luna/133420.jpg" alt="Triple Pairing">
+                    </div>
+                </div>
+            </div>
+
+            <!-- CENTER: INFO -->
+            <div class="info-section">
+                <h1 class="title">Triple Pairing</h1>
+                
+                <div class="description">
+                    <p>The three-way romance VN "Triple Pairing" now available on Steam! You are caught between an elite lady, a complicated childhood friend, and a motherly poster girl. Who will you choose? Navigate sweet moments and chaotic showdowns. Use the Love Triangle and Radar Chart systems to find your true love!</p>
+                </div>
+
+                <div class="links links-top">
+                    <a href="#" class="link">
+                        <svg class="link-icon" viewBox="0 0 24 24">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        <span>Official Site</span>
+                    </a>
+                    <a href="#" class="link">
+                        <svg class="link-icon" viewBox="0 0 24 24">
+                            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+                        </svg>
+                        <span>Community</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RIGHT: DOWNLOAD/ACTION -->
+            <div class="download-section">
+                <button class="cart-btn" id="cartBtn">
+                    <svg class="cart-icon" viewBox="0 0 24 24">
+                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                    </svg>
+                    <span>Add to Cart</span>
+                </button>
+
+                <span class="also-available">Also available on</span>
+                <div class="store-icons">
+                    <a href="#" class="store-icon steam" title="Steam">
+                        <img src="file:///C:/Users/Berto/Desktop/Luna/Steam_Logo.png" alt="Steam">
+                        <span class="store-label">Steam</span>
+                    </a>
+                    <a href="#" class="store-icon jast" title="JAST">
+                        <img src="file:///C:/Users/Berto/Desktop/Luna/18318461-jast-usa.png" alt="JAST USA">
+                        <span class="store-label">JAST USA</span>
+                    </a>
+                    <a href="#" class="store-icon heybox" title="Heybox">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        <span class="store-label">HEYBOX</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT SECTIONS -->
+    <div class="info-section">
+        <!-- TAB BAR -->
+        <div class="tab-bar stuck">
+            <div class="content">
+                <div class="tab-list">
+                    <div class="tab selected" onclick="switchTab('screenshots')">
+                        <div class="name">Screenshots</div>
+                        <div class="selected-border"></div>
+                    </div>
+                    <div class="tab" onclick="switchTab('detail')">
+                        <div class="name">Product Detail</div>
+                        <div class="selected-border"></div>
+                    </div>
+                    <div class="tab" onclick="switchTab('about')">
+                        <div class="name">About this Game</div>
+                        <div class="selected-border"></div>
+                    </div>
+                    <div class="tab" onclick="switchTab('systems')">
+                        <div class="name">System Requirements</div>
+                        <div class="selected-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT CONTAINER -->
+        <div class="content-container">
+            <!-- SCREENSHOTS -->
+            <div id="screenshots" class="tab-content media-section active">
+                <div class="title">
+                    <span>Screenshots & Trailers</span>
+                    <div class="nav">
+                        <span>1 / 2</span>
+                        <div class="nav-dots">
+                            <div class="dot selected" onclick="setPage(0)"></div>
+                            <div class="dot" onclick="setPage(1)"></div>
+                        </div>
+                        <div class="arrow previous disabled" onclick="prevPage()"></div>
+                        <div class="arrow next" onclick="nextPage()"></div>
+                    </div>
+                </div>
+                <div class="media-wrapper">
+                    <div class="pages" id="pages">
+                        <!-- PAGE 1: 1 video + 4 screenshots -->
+                        <div class="section">
+                            <div class="preview first video" onclick="openVideo('03Cymo3ezJ0')">
+                                <img src="https://img.youtube.com/vi/03Cymo3ezJ0/maxresdefault.jpg" alt="Trailer Thumbnail">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/1.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/1.jpg" alt="Screenshot 1">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/2.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/2.jpg" alt="Screenshot 2">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/3.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/3.jpg" alt="Screenshot 3">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/4.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/4.jpg" alt="Screenshot 4">
+                            </div>
+                        </div>
+                        <!-- PAGE 2: 8 screenshots -->
+                        <div class="section">
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/5.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/5.jpg" alt="Screenshot 5">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/6.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/6.jpg" alt="Screenshot 6">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/7.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/7.jpg" alt="Screenshot 7">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/8.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/8.jpg" alt="Screenshot 8">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/9.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/9.jpg" alt="Screenshot 9">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/10.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/10.jpg" alt="Screenshot 10">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/11.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/11.jpg" alt="Screenshot 11">
+                            </div>
+                            <div class="preview" onclick="openImage('file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/12.jpg')">
+                                <img src="file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/12.jpg" alt="Screenshot 12">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT DETAIL -->
+            <div id="detail" class="tab-content details-section">
+                <div class="title">Product Detail</div>
+                <div class="content">
+                    <div class="detail-row">
+                        <span class="label">Release Date</span>
+                        <span class="value">Mar 15, 2026</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Platform</span>
+                        <span class="value">
+                            <span class="tag">
+                                <svg style="width:14px;height:14px;vertical-align:middle;margin-right:6px;fill:currentColor" viewBox="0 0 24 24"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4h-13.05M0 12.6h9.75v9.451L0 20.551M10.949 12.6H24V24l-12.9-1.801"/></svg>
+                                Windows
+                            </span>
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Genres</span>
+                        <span class="value">
+                            <span class="tag">Visual Novel</span>
+                            <span class="tag">Romance</span>
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Tags</span>
+                        <span class="value">
+                            <span class="tag">Anime</span>
+                            <span class="tag">Dating Sim</span>
+                            <span class="tag">Story Rich</span>
+                            <span class="tag">Choices Matter</span>
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Languages</span>
+                        <span class="value">
+                            <span class="tag">English</span>
+                            <span class="tag">Japanese</span>
+                            <span class="tag">Spanish</span>
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Publisher</span>
+                        <span class="value">Kagami Games</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Developer</span>
+                        <span class="value">Luna Studio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT -->
+            <div id="about" class="tab-content summary-section">
+                <div class="title">About this Game</div>
+                <div class="content">
+                    <div class="image-list">
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/1.avif" alt="Screenshot 1">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/2.avif" alt="Screenshot 2">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/3.avif" alt="Screenshot 3">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/4.avif" alt="Screenshot 4">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/5.avif" alt="Screenshot 5">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/6.avif" alt="Screenshot 6">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/7.avif" alt="Screenshot 7">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/8.avif" alt="Screenshot 8">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/9.avif" alt="Screenshot 9">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/10.avif" alt="Screenshot 10">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/11.avif" alt="Screenshot 11">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/12.avif" alt="Screenshot 12">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/13.avif" alt="Screenshot 13">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/14.avif" alt="Screenshot 14">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/15.avif" alt="Screenshot 15">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/16.avif" alt="Screenshot 16">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/17.avif" alt="Screenshot 17">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/18.avif" alt="Screenshot 18">
+                        </div>
+                        <div class="img-item">
+                            <img src="file:///C:/Users/Berto/Desktop/Luna/TP/19.avif" alt="Screenshot 19">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SYSTEM REQUIREMENTS -->
+            <div id="systems" class="tab-content requirements-section">
+                <div class="title">System Requirements</div>
+                <div class="content">
+                    <div class="requirements-card">
+                        <div class="card-header">
+                            <span>Minimum</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="requirements-table">
+                                <tr>
+                                    <td>OS</td>
+                                    <td>Windows 10/11 (64-bit)</td>
+                                </tr>
+                                <tr>
+                                    <td>Processor</td>
+                                    <td>Intel Core i3 or equivalent</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory</td>
+                                    <td>4 GB RAM</td>
+                                </tr>
+                                <tr>
+                                    <td>Graphics</td>
+                                    <td>Integrated Graphics</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>2.5 GB available space</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="requirements-card">
+                        <div class="card-header">
+                            <span>Recommended</span>
+                        </div>
+                        <div class="card-body">
+                            <table class="requirements-table">
+                                <tr>
+                                    <td>OS</td>
+                                    <td>Windows 10/11 (64-bit)</td>
+                                </tr>
+                                <tr>
+                                    <td>Processor</td>
+                                    <td>Intel Core i5 or equivalent</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory</td>
+                                    <td>8 GB RAM</td>
+                                </tr>
+                                <tr>
+                                    <td>Graphics</td>
+                                    <td>Dedicated Graphics</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>2.5 GB available space</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews-section">
+        <h2 class="title">Player Reviews</h2>
+        
+        <div class="reviews-container">
+            <div class="reviews-summary">
+                <div class="score-circle">
+                    <svg viewBox="0 0 200 200">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FF7B3B"/>
+                                <stop offset="100%" style="stop-color:#ff9566"/>
+                            </linearGradient>
+                        </defs>
+                        <circle class="circle-bg" cx="100" cy="100" r="70"/>
+                        <circle class="circle-progress" cx="100" cy="100" r="70"/>
+                    </svg>
+                    <div class="score-inner">
+                        <div class="score-number">9.2</div>
+                        <div class="score-out-of">/10</div>
+                        <div class="score-label">Excellent</div>
+                        <div class="score-total">247 reviews</div>
+                    </div>
+                </div>
+                <div class="reviews-bars">
+                    <div class="review-bar">
+                        <span class="stars">★★★★★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 78%"></div>
+                        </div>
+                        <span class="count">193</span>
+                    </div>
+                    <div class="review-bar">
+                        <span class="stars">★★★★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 15%"></div>
+                        </div>
+                        <span class="count">37</span>
+                    </div>
+                    <div class="review-bar">
+                        <span class="stars">★★★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 4%"></div>
+                        </div>
+                        <span class="count">10</span>
+                    </div>
+                    <div class="review-bar">
+                        <span class="stars">★★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 2%"></div>
+                        </div>
+                        <span class="count">5</span>
+                    </div>
+                    <div class="review-bar">
+                        <span class="stars">★</span>
+                        <div class="bar-container">
+                            <div class="bar-fill" style="width: 1%"></div>
+                        </div>
+                        <span class="count">2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-list">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="review-avatar">K</div>
+                            <div class="review-author-info">
+                                <div class="name">KuroNeko92</div>
+                                <div class="date">June 8, 2026</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <strong>A Masterpiece of Storytelling</strong>
+                        Triple Pairing delivers an emotional journey that kept me engaged from start to finish. The character development is exceptional, and the choices actually matter. The art style is gorgeous and the music perfectly complements each scene. Highly recommended for VN fans!
+                    </div>
+                    <div class="review-helpful">
+                        <button>
+                            <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            Helpful (24)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="review-avatar">S</div>
+                            <div class="review-author-info">
+                                <div class="name">SakuraDreams</div>
+                                <div class="date">June 5, 2026</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <strong>Worth Every Penny</strong>
+                        The romance routes are well-written and each heroine feels unique and memorable. I've played through all three routes and enjoyed every minute. The English localization is top-notch too. Can't wait for the next project from Luna Studio!
+                    </div>
+                    <div class="review-helpful">
+                        <button>
+                            <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            Helpful (18)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-author">
+                            <div class="review-avatar">A</div>
+                            <div class="review-author-info">
+                                <div class="name">AlexVN_Fan</div>
+                                <div class="date">May 28, 2026</div>
+                            </div>
+                        </div>
+                        <div class="review-rating">
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="star empty" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                    </div>
+                    <div class="review-content">
+                        <strong>Great Game with Minor Issues</strong>
+                        Overall a fantastic experience. The story had me hooked and the characters are lovable. Only complaint is that some routes feel a bit short - I wanted more! The soundtrack is absolutely beautiful though. Definitely recommend picking this up on sale.
+                    </div>
+                    <div class="review-helpful">
+                        <button>
+                            <svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                            Helpful (12)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMILAR GAMES SECTION -->
+    <section class="similar-games-section">
+        <h2 class="title">Similar Games</h2>
+        
+        <div class="similar-games-grid">
+            <div class="game-card">
+                <div class="cover">
+                    <img src="file:///C:/Users/Berto/Desktop/Luna/lpp_cover.jpg" alt="Love & Puzzles">
+                </div>
+                <div class="info">
+                    <h3 class="title">Love & Puzzles</h3>
+                    <p class="genre">Romance • Puzzle</p>
+                    <div class="footer">
+                        <span class="price">$14.99</span>
+                        <button class="btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="cover">
+                    <img src="file:///C:/Users/Berto/Desktop/Luna/template_cover.jpg" alt="Template Heart">
+                </div>
+                <div class="info">
+                    <h3 class="title">Template Heart</h3>
+                    <p class="genre">Drama • School Life</p>
+                    <div class="footer">
+                        <span class="price"><span>$19.99</span>$15.99</span>
+                        <button class="btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="cover">
+                    <img src="file:///C:/Users/Berto/Desktop/Luna/karigurashi_cover.jpg" alt="Karigurashi Days">
+                </div>
+                <div class="info">
+                    <h3 class="title">Karigurashi Days</h3>
+                    <p class="genre">Slice of Life • Comedy</p>
+                    <div class="footer">
+                        <span class="price">$12.99</span>
+                        <button class="btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="cover">
+                    <img src="file:///C:/Users/Berto/Desktop/Luna/94256.jpg" alt="Moonlit Promise">
+                </div>
+                <div class="info">
+                    <h3 class="title">Moonlit Promise</h3>
+                    <p class="genre">Fantasy • Romance</p>
+                    <div class="footer">
+                        <span class="price">$17.99</span>
+                        <button class="btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Kagami<span>Store</span></h3>
+                <p>Your destination for independent visual novels.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Store</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Browse All</a></li>
+                    <li><a href="#">Sale</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Refunds</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">For Creators</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Kagami Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="video-modal" onclick="closeVideo()">
+        <div class="video-modal-content" onclick="event.stopPropagation()">
+            <button class="video-modal-close" onclick="closeVideo()">×</button>
+            <div class="video-modal-container">
+                <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="image-modal" onclick="closeImage()">
+        <button class="image-modal-close" onclick="closeImage()">×</button>
+        <img id="modalImg" class="image-modal-content" src="" alt="Fullscreen">
+        <button class="image-modal-nav image-modal-prev" onclick="prevImage(event)">❮</button>
+        <button class="image-modal-nav image-modal-next" onclick="nextImage(event)">❯</button>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 2;
+        let currentImageIndex = 0;
+        const images = [
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/1.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/2.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/3.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/4.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/5.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/6.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/7.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/8.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/9.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/10.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/11.jpg',
+            'file:///C:/Users/Berto/Desktop/Luna/TP/Screenshots/12.jpg'
+        ];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('selected');
+            });
+            
+            setTimeout(() => {
+                document.getElementById(tabId).classList.add('active');
+            }, 100);
+            
+            event.currentTarget.classList.add('selected');
+        }
+
+        function setPage(page) {
+            currentPage = page;
+            updateGallery();
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                updateGallery();
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateGallery();
+            }
+        }
+
+        function updateGallery() {
+            const pages = document.getElementById('pages');
+            pages.style.transform = `translateX(-${currentPage * 100}%)`;
+            
+            document.querySelectorAll('.nav-dots .dot').forEach((dot, i) => {
+                dot.classList.toggle('selected', i === currentPage);
+            });
+            
+            document.querySelector('.arrow.previous').classList.toggle('disabled', currentPage === 0);
+            document.querySelector('.arrow.next').classList.toggle('disabled', currentPage === totalPages - 1);
+            
+            document.querySelector('.nav span').textContent = `${currentPage + 1} / ${totalPages}`;
+        }
+
+        document.getElementById('cartBtn').addEventListener('click', function() {
+            const original = this.querySelector('span').textContent;
+            this.querySelector('span').textContent = 'Added!';
+            document.querySelector('.badge-count').textContent = '1';
+            setTimeout(() => {
+                this.querySelector('span').textContent = original;
+            }, 2000);
+        });
+
+        function openVideo(videoId) {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            modal.style.display = 'flex';
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            frame.src = '';
+            modal.style.display = 'none';
+        }
+
+        function openImage(src) {
+            currentImageIndex = images.indexOf(src);
+            const modal = document.getElementById('imageModal');
+            const img = document.getElementById('modalImg');
+            img.src = src;
+            modal.style.display = 'flex';
+        }
+
+        function closeImage() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        function nextImage(event) {
+            if (event) event.stopPropagation();
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            document.getElementById('modalImg').src = images[currentImageIndex];
+        }
+
+        function prevImage(event) {
+            if (event) event.stopPropagation();
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            document.getElementById('modalImg').src = images[currentImageIndex];
+        }
+    </script>
+</body>
+</html>
